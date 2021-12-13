@@ -16,6 +16,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import website.skylorbeck.minecraft.difficultyplus.Declarar;
+import website.skylorbeck.minecraft.difficultyplus.cardinal.DifficultyPlusCardinal;
+import website.skylorbeck.minecraft.difficultyplus.cardinal.XPTracker;
 
 @Mixin(SpawnHelper.class)
 public class SpawnHelperMixin {
@@ -25,7 +27,9 @@ public class SpawnHelperMixin {
     @Inject(method = "createMob", at = @At("RETURN"))
     private static void checkDifficultSpawn(ServerWorld world, EntityType<?> type, CallbackInfoReturnable<@Nullable MobEntity> cir) {
         if (!type.getSpawnGroup().isPeaceful()) {
-            Declarar.logger.info("HOSTILESPAWN");
+            XPTracker tracker = DifficultyPlusCardinal.WorldXP.get(world);
+
+            Declarar.logger.info("HOSTILESPAWN: "+(tracker.getTotalXP()*Declarar.xpInfluence)+" "+ world.getPlayers().size()*Declarar.playerInfluence);
         }
 
     }

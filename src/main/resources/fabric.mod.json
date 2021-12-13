@@ -8,8 +8,10 @@
     "SkylorBeck"
   ],
   "contact": {
-    "website": "skylorbeck.website",
-    "repo": "todo"
+    "homepage": "https://www.skylorbeck.website",
+    "source": "https://github.com/Skylortrexler/Difficultyplus",
+    "repo": "https://github.com/Skylortrexler/Difficultyplus",
+    "issues": "https://github.com/Skylortrexler/Difficultyplus/issues"
   },
   "license": "LGPL-3.0",
   "icon": "assets/difficultyplus/icon.png",
@@ -20,6 +22,9 @@
     ],
     "main": [
       "website.skylorbeck.minecraft.difficultyplus.Difficultyplus"
+    ],
+    "cardinal-components-world": [
+      "website.skylorbeck.minecraft.difficultyplus.cardinal.DifficultyPlusCardinal"
     ]
   },
   "mixins": [
@@ -29,5 +34,10 @@
     "fabricloader": ">=0.12.11",
     "fabric": "*",
     "minecraft": "1.18.1"
+  },
+  "custom": {
+    "cardinal-components": [
+      "difficultyplus:worldxp"
+    ]
   }
 }
