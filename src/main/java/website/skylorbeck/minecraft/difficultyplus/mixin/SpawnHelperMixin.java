@@ -2,6 +2,7 @@ package website.skylorbeck.minecraft.difficultyplus.mixin;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -9,6 +10,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.SkeletonEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.math.MathHelper;
@@ -44,6 +46,10 @@ public class SpawnHelperMixin {
 
                 random = world.random.nextFloat();
                 if (random<chance) {
+                    if (entity instanceof SkeletonEntity) {
+                       entity.getItemsHand().forEach((itemStack -> EnchantmentHelper.enchant(world.random,itemStack,0,true)));
+                       Declarar.logger.info(entity.getItemsEquipped().toString());
+                    } else
                     entity.equipStack(EquipmentSlot.MAINHAND, Declarar.weapons[world.random.nextInt(Declarar.weapons.length)].getDefaultStack());
                 }
                 random = world.random.nextFloat();
