@@ -23,11 +23,13 @@ import website.skylorbeck.minecraft.difficultyplus.Declarar;
 import website.skylorbeck.minecraft.difficultyplus.cardinal.DifficultyPlusCardinal;
 import website.skylorbeck.minecraft.difficultyplus.cardinal.XPTracker;
 
+import java.util.Arrays;
+
 @Mixin(MobEntity.class)
 public class SpawnHelperMixin {
     @Inject(method = "initialize", at = @At("RETURN"))
     private void checkDifficultSpawn(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, EntityData entityData, NbtCompound entityNbt, CallbackInfoReturnable<EntityData> cir) {
-        MobEntity mob =  ((MobEntity)(Object)this);
+        MobEntity mob = ((MobEntity) (Object) this);
         World mobWorld = mob.world;
         if (!mobWorld.isClient) {
             EntityType<?> type = mob.getType();
@@ -36,37 +38,37 @@ public class SpawnHelperMixin {
                 float chance = MathHelper.clamp((tracker.getTotalXP() * Declarar.xpInfluence) * (mobWorld.getPlayers().size() * Declarar.playerInfluence), 0, Declarar.chanceCap);
                 float random = mobWorld.random.nextFloat();
                 if (random < chance) {
-
                     mob.addStatusEffect(new StatusEffectInstance(Declarar.statusEffects[mobWorld.random.nextInt(Declarar.statusEffects.length)], 9999, mobWorld.random.nextBoolean() ? 1 : 0));
-
-                    random = mobWorld.random.nextFloat();
-                    if (random < chance) {
-                        if (!(mob instanceof SkeletonEntity))
-                        mob.equipStack(EquipmentSlot.MAINHAND, Declarar.weapons[mobWorld.random.nextInt(Declarar.weapons.length)].getDefaultStack());
-                    }
-                    random = mobWorld.random.nextFloat();
-                    if (random < chance)
-                        mob.equipStack(EquipmentSlot.HEAD, Declarar.helmets[mobWorld.random.nextInt(Declarar.helmets.length)].getDefaultStack());
-
-                    random = mobWorld.random.nextFloat();
-                    if (random < chance)
-                        mob.equipStack(EquipmentSlot.CHEST, Declarar.chests[mobWorld.random.nextInt(Declarar.chests.length)].getDefaultStack());
-
-                    random = mobWorld.random.nextFloat();
-                    if (random < chance)
-                        mob.equipStack(EquipmentSlot.LEGS, Declarar.pants[mobWorld.random.nextInt(Declarar.pants.length)].getDefaultStack());
-
-                    random = mobWorld.random.nextFloat();
-                    if (random < chance)
-                        mob.equipStack(EquipmentSlot.FEET, Declarar.boots[mobWorld.random.nextInt(Declarar.boots.length)].getDefaultStack());
-
-                    for (ItemStack itemStack : mob.getItemsEquipped()) {
+                    if (Declarar.allowNonArmor || Arrays.stream(Declarar.armorBanned).noneMatch((entityType -> entityType == type))) {
+                        random = mobWorld.random.nextFloat();
+                        if (random < chance) {
+                            if (!(mob instanceof SkeletonEntity))
+                                mob.equipStack(EquipmentSlot.MAINHAND, Declarar.weapons[mobWorld.random.nextInt(Declarar.weapons.length)].getDefaultStack());
+                        }
                         random = mobWorld.random.nextFloat();
                         if (random < chance)
-                            EnchantmentHelper.enchant(mobWorld.random, itemStack, 1, true);
-                    }
-                    for (EquipmentSlot slot : EquipmentSlot.values()) {
-                        mob.setEquipmentDropChance(slot, chance);
+                            mob.equipStack(EquipmentSlot.HEAD, Declarar.helmets[mobWorld.random.nextInt(Declarar.helmets.length)].getDefaultStack());
+
+                        random = mobWorld.random.nextFloat();
+                        if (random < chance)
+                            mob.equipStack(EquipmentSlot.CHEST, Declarar.chests[mobWorld.random.nextInt(Declarar.chests.length)].getDefaultStack());
+
+                        random = mobWorld.random.nextFloat();
+                        if (random < chance)
+                            mob.equipStack(EquipmentSlot.LEGS, Declarar.pants[mobWorld.random.nextInt(Declarar.pants.length)].getDefaultStack());
+
+                        random = mobWorld.random.nextFloat();
+                        if (random < chance)
+                            mob.equipStack(EquipmentSlot.FEET, Declarar.boots[mobWorld.random.nextInt(Declarar.boots.length)].getDefaultStack());
+
+                        for (ItemStack itemStack : mob.getItemsEquipped()) {
+                            random = mobWorld.random.nextFloat();
+                            if (random < chance)
+                                EnchantmentHelper.enchant(mobWorld.random, itemStack, 1, true);
+                        }
+                        for (EquipmentSlot slot : EquipmentSlot.values()) {
+                            mob.setEquipmentDropChance(slot, chance);
+                        }
                     }
                 }
             }

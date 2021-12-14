@@ -5,6 +5,7 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import website.skylorbeck.minecraft.difficultyplus.cardinal.DifficultyPlusCardinal;
 
@@ -33,6 +34,15 @@ public class CommandCenter {
                                     return 1;
                                 }))
         ));
+        dispatcher.register(
+                literal("difficultyplus").requires(cs -> cs.hasPermissionLevel(0))
+                        .then(literal("get")
+                                .executes((command) -> {
+                                    World world = command.getSource().getWorld();
+                                    command.getSource().sendFeedback(new TranslatableText("command.difficultyplus.get").append(Text.of(" "+100* MathHelper.clamp((DifficultyPlusCardinal.WorldXP.get(world).getTotalXP() * Declarar.xpInfluence) * (world.getPlayers().size() * Declarar.playerInfluence), 0, Declarar.chanceCap)+"%")), true);
+                                    return 1;
+                                }))
+        );
     }
     private static void resetWorldXP(World serverWorld, int amount) {
         for (World world:serverWorld.getServer().getWorlds()) {

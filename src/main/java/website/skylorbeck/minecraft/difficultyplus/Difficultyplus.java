@@ -13,6 +13,7 @@ public class Difficultyplus implements ModInitializer {
     public void onInitialize() {
         ConfigHolder<ModConfig> configHolder = AutoConfig.register(ModConfig.class, JanksonConfigSerializer::new);//register config asap to prevent errors down the line
         configHolder.getConfig();
+        Declarar.UpdateXPRates();
         configHolder.registerSaveListener((manager, data) ->{//listen for config file changes
             Declarar.UpdateXPRates();
             //gets settings that don't need a full restart to properly do.
@@ -23,3 +24,4 @@ public class Difficultyplus implements ModInitializer {
         });
     }
 }
+//todo mob blacklist
