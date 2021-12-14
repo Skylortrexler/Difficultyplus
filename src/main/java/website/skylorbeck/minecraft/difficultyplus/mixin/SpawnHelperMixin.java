@@ -46,10 +46,7 @@ public class SpawnHelperMixin {
 
                 random = world.random.nextFloat();
                 if (random<chance) {
-                    if (entity instanceof SkeletonEntity) {
-                       entity.getItemsHand().forEach((itemStack -> EnchantmentHelper.enchant(world.random,itemStack,0,true)));
-                       Declarar.logger.info(entity.getItemsEquipped().toString());
-                    } else
+                   //skeletons are initialized after this
                     entity.equipStack(EquipmentSlot.MAINHAND, Declarar.weapons[world.random.nextInt(Declarar.weapons.length)].getDefaultStack());
                 }
                 random = world.random.nextFloat();
@@ -72,6 +69,9 @@ public class SpawnHelperMixin {
                     random = world.random.nextFloat();
                     if (random < chance)
                         EnchantmentHelper.enchant(world.random,itemStack,1,true);
+                }
+                for (EquipmentSlot slot:EquipmentSlot.values()) {
+                    entity.setEquipmentDropChance(slot, chance);
                 }
                 cir.setReturnValue(entity);
 //                Declarar.logger.info("mob Upgraded");
