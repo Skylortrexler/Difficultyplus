@@ -1,11 +1,12 @@
 {
   "schemaVersion": 1,
   "id": "difficultyplus",
-  "version": "0.0.1",
-  "name": "Difficultyplus",
+  "version": "1.0.0",
+  "name": "Difficulty Plus",
   "description": "Enemies spawn with enchantments as you gain xp",
   "authors": [
-    "SkylorBeck"
+    "Author: SkylorBeck",
+    "Patron: Grant Lawson"
   ],
   "contact": {
     "homepage": "https://www.skylorbeck.website",
