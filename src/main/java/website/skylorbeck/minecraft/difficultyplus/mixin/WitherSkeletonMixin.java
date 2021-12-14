@@ -1,43 +1,31 @@
 package website.skylorbeck.minecraft.difficultyplus.mixin;
 
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.mob.AbstractSkeletonEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.SkeletonEntity;
+import net.minecraft.entity.mob.WitherSkeletonEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.tag.Tag;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.LocalDifficulty;
-import net.minecraft.world.SpawnHelper;
 import net.minecraft.world.World;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.Logger;
-import org.jetbrains.annotations.Nullable;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import website.skylorbeck.minecraft.difficultyplus.Declarar;
 import website.skylorbeck.minecraft.difficultyplus.cardinal.DifficultyPlusCardinal;
 import website.skylorbeck.minecraft.difficultyplus.cardinal.XPTracker;
 
-@Mixin(MobEntity.class)
-public class SpawnHelperMixin {
+@Mixin(WitherSkeletonEntity.class)
+public class WitherSkeletonMixin {
     @Inject(method = "updateEnchantments", at = @At("RETURN"))
     private void checkDifficultSpawn(LocalDifficulty difficulty, CallbackInfo ci) {
-        MobEntity mob =  ((MobEntity)(Object)this);
-        World world =mob.world;
+        MobEntity mob = ((MobEntity) (Object) this);
+        World world = mob.world;
         if (!world.isClient) {
             EntityType type = mob.getType();
             if (!type.getSpawnGroup().isPeaceful()) {
@@ -52,7 +40,7 @@ public class SpawnHelperMixin {
                     random = world.random.nextFloat();
                     if (random < chance) {
                         if (!(mob instanceof SkeletonEntity))
-                        mob.equipStack(EquipmentSlot.MAINHAND, Declarar.weapons[world.random.nextInt(Declarar.weapons.length)].getDefaultStack());
+                            mob.equipStack(EquipmentSlot.MAINHAND, Declarar.weapons[world.random.nextInt(Declarar.weapons.length)].getDefaultStack());
                     }
                     random = world.random.nextFloat();
                     if (random < chance)
