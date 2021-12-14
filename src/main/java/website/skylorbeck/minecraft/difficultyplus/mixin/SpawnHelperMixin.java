@@ -44,7 +44,6 @@ public class SpawnHelperMixin {
                 XPTracker tracker = DifficultyPlusCardinal.WorldXP.get(world);
                 float chance = MathHelper.clamp((tracker.getTotalXP() * Declarar.xpInfluence) * (world.getPlayers().size() * Declarar.playerInfluence), 0, Declarar.chanceCap);
                 float random = world.random.nextFloat();
-//            Declarar.logger.info(random +" "+ chance);
                 if (random < chance) {
 
                     mob.addStatusEffect(new StatusEffectInstance(Declarar.statusEffects[world.random.nextInt(Declarar.statusEffects.length)], 9999, world.random.nextBoolean() ? 1 : 0));
@@ -78,7 +77,6 @@ public class SpawnHelperMixin {
                     for (EquipmentSlot slot : EquipmentSlot.values()) {
                         mob.setEquipmentDropChance(slot, chance);
                     }
-//                Declarar.logger.info("mob Upgraded");
                 }
             }
         }

@@ -25,6 +25,9 @@
     ],
     "cardinal-components-world": [
       "website.skylorbeck.minecraft.difficultyplus.cardinal.DifficultyPlusCardinal"
+    ],
+    "modmenu": [
+      "website.skylorbeck.minecraft.difficultyplus.ConfigEntry"
     ]
   },
   "mixins": [

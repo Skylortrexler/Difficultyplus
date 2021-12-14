@@ -1,5 +1,6 @@
 package website.skylorbeck.minecraft.difficultyplus;
 
+import me.shedaniel.autoconfig.AutoConfig;
 import net.fabricmc.tinyremapper.extension.mixin.common.Logger;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.ArmorItem;
@@ -15,6 +16,8 @@ public class Declarar {
         public static Identifier getIdentifier(String string){
                 return new Identifier(MODID,string);
         }
+        public static ModConfig config = AutoConfig.getConfigHolder(ModConfig.class).getConfig();
+
         public static float playerInfluence = 1f;
         public static float xpInfluence = 0.00001f;
         public static float chanceCap = 1f;
@@ -24,4 +27,15 @@ public class Declarar {
         public static Item[] pants = new Item[]{Items.CHAINMAIL_LEGGINGS,Items.LEATHER_LEGGINGS,Items.IRON_LEGGINGS,Items.DIAMOND_LEGGINGS};
         public static Item[] boots = new Item[]{Items.CHAINMAIL_BOOTS,Items.LEATHER_BOOTS,Items.IRON_BOOTS,Items.DIAMOND_BOOTS};
         public static Item[] weapons = new Item[]{Items.WOODEN_AXE,Items.WOODEN_SHOVEL,Items.WOODEN_SWORD,Items.IRON_AXE,Items.IRON_SHOVEL,Items.IRON_SWORD,Items.DIAMOND_AXE,Items.DIAMOND_SHOVEL,Items.DIAMOND_SWORD,};
+
+        public static void UpdateXPRates(){
+                playerInfluence = config.playerInfluence*0.01f;
+                xpInfluence = 0.01f/config.xpRatio;
+                chanceCap = config.chanceCap*0.01f;
+        }
 }
+
+
+//todo config file
+// for what weapons and armor to spawn
+// influence and cap
