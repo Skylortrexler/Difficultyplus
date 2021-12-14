@@ -3,7 +3,6 @@ package website.skylorbeck.minecraft.difficultyplus;
 import me.shedaniel.autoconfig.AutoConfig;
 import net.fabricmc.tinyremapper.extension.mixin.common.Logger;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
@@ -34,8 +33,3 @@ public class Declarar {
                 chanceCap = config.chanceCap*0.01f;
         }
 }
-
-
-//todo config file
-// for what weapons and armor to spawn
-// influence and cap

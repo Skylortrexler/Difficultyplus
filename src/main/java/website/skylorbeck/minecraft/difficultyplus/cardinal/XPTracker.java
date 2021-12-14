@@ -2,8 +2,6 @@ package website.skylorbeck.minecraft.difficultyplus.cardinal;
 
 import net.minecraft.nbt.NbtCompound;
 
-import java.util.UUID;
-
 public class XPTracker implements IXPTracker {
     int TotalXPGained = 0;
 
@@ -15,6 +13,11 @@ public class XPTracker implements IXPTracker {
     @Override
     public void addTotalXP(int i) {
         TotalXPGained += i;
+    }
+
+    @Override
+    public void setTotalXP(int i) {
+        TotalXPGained = i;
     }
 
     @Override

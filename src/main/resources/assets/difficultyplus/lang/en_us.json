@@ -1,0 +1,8 @@
+{
+  "text.autoconfig.difficultyplus.title": "Difficulty Plus",
+  "text.autoconfig.difficultyplus.option.playerInfluence" : "Player Multiplier (Percent)",
+  "text.autoconfig.difficultyplus.option.xpRatio" : "Experience Ratio (X:1%)",
+  "text.autoconfig.difficultyplus.option.chanceCap" : "Maximum Upgrade Chance",
+  "command.difficultyplus.cleared": "Difficulty Cleared",
+  "command.difficultyplus.set": "Total XP set to:"
+}

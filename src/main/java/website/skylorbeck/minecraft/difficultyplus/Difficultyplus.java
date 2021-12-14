@@ -2,9 +2,9 @@ package website.skylorbeck.minecraft.difficultyplus;
 
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigHolder;
-import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.minecraft.util.ActionResult;
 
 public class Difficultyplus implements ModInitializer {
@@ -17,6 +17,9 @@ public class Difficultyplus implements ModInitializer {
             Declarar.UpdateXPRates();
             //gets settings that don't need a full restart to properly do.
             return ActionResult.SUCCESS;
+        });
+        CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
+            CommandCenter.register(dispatcher);
         });
     }
 }

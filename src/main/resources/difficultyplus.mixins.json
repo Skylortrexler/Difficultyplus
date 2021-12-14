@@ -5,8 +5,7 @@
   "compatibilityLevel": "JAVA_16",
   "mixins": [
     "ExperienceOrbEntityMixin",
-    "SpawnHelperMixin",
-    "WitherSkeletonMixin"
+    "SpawnHelperMixin"
   ],
   "client": [
   ],
