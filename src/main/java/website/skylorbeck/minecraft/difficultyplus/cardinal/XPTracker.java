@@ -20,12 +20,12 @@ public class XPTracker implements IXPTracker {
     @Override
     public void readFromNbt(NbtCompound tag) {
         if (tag.contains("WorldXP")) {
-            this.TotalXPGained = tag.getInt("WorldXP");
+            TotalXPGained = tag.getInt("WorldXP");
         }
     }
 
     @Override
     public void writeToNbt(NbtCompound tag) {
-        tag.putInt("WorldXP", this.TotalXPGained);
+        tag.putInt("WorldXP", TotalXPGained);
     }
 }
