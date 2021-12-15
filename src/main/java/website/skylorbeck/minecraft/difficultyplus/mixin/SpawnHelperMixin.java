@@ -42,8 +42,11 @@ public class SpawnHelperMixin {
                     if (Declarar.allowNonArmor || Arrays.stream(Declarar.armorBanned).noneMatch((entityType -> entityType == type))) {
                         random = mobWorld.random.nextFloat();
                         if (random < chance) {
-                            if (!(mob instanceof SkeletonEntity))
+                            if (!(mob instanceof SkeletonEntity)) {
                                 mob.equipStack(EquipmentSlot.MAINHAND, Declarar.weapons[mobWorld.random.nextInt(Declarar.weapons.length)].getDefaultStack());
+                            } else {
+                                mob.equipStack(EquipmentSlot.MAINHAND,EnchantmentHelper.enchant(mobWorld.random,Items.BOW.getDefaultStack(),mob.getRandom().nextInt(18)+5, true));
+                            }
                         }
                         random = mobWorld.random.nextFloat();
                         if (random < chance)
@@ -67,7 +70,7 @@ public class SpawnHelperMixin {
                                 EnchantmentHelper.enchant(mobWorld.random, itemStack, 1, true);
                         }
                         for (EquipmentSlot slot : EquipmentSlot.values()) {
-                            mob.setEquipmentDropChance(slot, Declarar.allowArmorDrop?chance: 0);
+                            mob.setEquipmentDropChance(slot, Declarar.allowArmorDrop?chance: mob.getRandom().nextInt(18)+5);
                         }
                     }
                 }

@@ -44,6 +44,7 @@ public class Declarar {
                 chanceCap = config.chanceCap*0.01f;
                 allowNonArmor = config.allowNonArmorWearing;
                 allowArmorDrop = config.allowDrops;
+
                 //this gonna be ugly as fuck, sorry.
 
                 List<StatusEffect> statusEffects = new ArrayList<>();
