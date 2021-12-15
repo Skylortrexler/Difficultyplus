@@ -22,6 +22,9 @@ public class ModConfig implements ConfigData {
     @Comment("Creepers, Spiders, Endermen, etc")
     public boolean allowNonArmorWearing = false;
 
+    @Comment("Can be overpowered at high difficulty")
+    public boolean allowDrops = true;
+
     @Comment("Determines what Status Effects can be used")
     @ConfigEntry.Gui.CollapsibleObject
     public StatusEffects statusEffects = new StatusEffects();

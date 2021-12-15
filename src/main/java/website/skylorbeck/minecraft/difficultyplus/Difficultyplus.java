@@ -24,4 +24,3 @@ public class Difficultyplus implements ModInitializer {
         });
     }
 }
-//todo mob blacklist

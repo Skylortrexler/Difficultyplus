@@ -67,7 +67,7 @@ public class SpawnHelperMixin {
                                 EnchantmentHelper.enchant(mobWorld.random, itemStack, 1, true);
                         }
                         for (EquipmentSlot slot : EquipmentSlot.values()) {
-                            mob.setEquipmentDropChance(slot, chance);
+                            mob.setEquipmentDropChance(slot, Declarar.allowArmorDrop?chance: 0);
                         }
                     }
                 }

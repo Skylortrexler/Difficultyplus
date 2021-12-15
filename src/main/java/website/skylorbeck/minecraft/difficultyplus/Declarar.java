@@ -36,12 +36,14 @@ public class Declarar {
         public static Item[] boots = new Item[]{Items.CHAINMAIL_BOOTS,Items.LEATHER_BOOTS,Items.IRON_BOOTS,Items.DIAMOND_BOOTS};
         public static Item[] weapons = new Item[]{Items.WOODEN_AXE,Items.WOODEN_SHOVEL,Items.WOODEN_SWORD,Items.STONE_AXE,Items.STONE_SHOVEL,Items.STONE_SWORD,Items.IRON_AXE,Items.IRON_SHOVEL,Items.IRON_SWORD,Items.DIAMOND_AXE,Items.DIAMOND_SHOVEL,Items.DIAMOND_SWORD,};
         public static boolean allowNonArmor = false;
+        public static boolean allowArmorDrop = true;
         public static EntityType<?>[] armorBanned = new EntityType[]{EntityType.VEX,EntityType.ZOGLIN,EntityType.HOGLIN,EntityType.PILLAGER,EntityType.ILLUSIONER,EntityType.EVOKER,EntityType.ENDERMAN,EntityType.CREEPER,EntityType.BLAZE,EntityType.CAVE_SPIDER,EntityType.SPIDER,EntityType.ELDER_GUARDIAN,EntityType.GUARDIAN,EntityType.ENDER_DRAGON,EntityType.ENDERMITE,EntityType.GHAST,EntityType.MAGMA_CUBE,EntityType.PHANTOM,EntityType.SHULKER,EntityType.WITCH,EntityType.WITHER};
         public static void UpdateXPRates(){
                 playerInfluence = config.playerInfluence*0.01f;
                 xpInfluence = 0.01f/config.xpRatio;
                 chanceCap = config.chanceCap*0.01f;
                 allowNonArmor = config.allowNonArmorWearing;
+                allowArmorDrop = config.allowDrops;
                 //this gonna be ugly as fuck, sorry.
 
                 List<StatusEffect> statusEffects = new ArrayList<>();

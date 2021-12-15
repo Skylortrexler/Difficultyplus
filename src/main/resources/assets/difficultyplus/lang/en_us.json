@@ -41,6 +41,7 @@
   "text.autoconfig.difficultyplus.option.tools.shovel" : "Shovel",
   "text.autoconfig.difficultyplus.option.tools.hoe" : "Hoe",
   "text.autoconfig.difficultyplus.option.allowNonArmorWearing" : "Allow Non-Armor Wearing mobs",
+  "text.autoconfig.difficultyplus.option.allowDrops" : "Allow mobs to drop armor and weapons",
 
   "command.difficultyplus.cleared": "Difficulty Cleared",
   "command.difficultyplus.set": "Total XP set to:",
