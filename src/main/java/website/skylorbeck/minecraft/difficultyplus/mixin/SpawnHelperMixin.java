@@ -33,7 +33,7 @@ public class SpawnHelperMixin {
         World mobWorld = mob.world;
         if (!mobWorld.isClient) {
             EntityType<?> type = mob.getType();
-            if (!type.getSpawnGroup().isPeaceful()) {
+            if (!type.getSpawnGroup().isPeaceful() ||(type.equals(EntityType.PIGLIN) ||type.equals(EntityType.PIGLIN_BRUTE))) {
                 XPTracker tracker = DifficultyPlusCardinal.WorldXP.get(mobWorld);
                 float chance = MathHelper.clamp((tracker.getTotalXP() * Declarar.xpInfluence) * (mobWorld.getPlayers().size() * Declarar.playerInfluence), 0, Declarar.chanceCap);
                 float random = mobWorld.random.nextFloat();
@@ -45,7 +45,7 @@ public class SpawnHelperMixin {
                             if (!(mob instanceof SkeletonEntity)) {
                                 mob.equipStack(EquipmentSlot.MAINHAND, Declarar.weapons[mobWorld.random.nextInt(Declarar.weapons.length)].getDefaultStack());
                             } else {
-                                mob.equipStack(EquipmentSlot.MAINHAND,EnchantmentHelper.enchant(mobWorld.random,Items.BOW.getDefaultStack(),mob.getRandom().nextInt(18)+5, true));
+                                mob.equipStack(EquipmentSlot.MAINHAND, EnchantmentHelper.enchant(mobWorld.random, Items.BOW.getDefaultStack(), mob.getRandom().nextInt(18) + 5, true));
                             }
                         }
                         random = mobWorld.random.nextFloat();
@@ -70,7 +70,7 @@ public class SpawnHelperMixin {
                                 EnchantmentHelper.enchant(mobWorld.random, itemStack, 1, true);
                         }
                         for (EquipmentSlot slot : EquipmentSlot.values()) {
-                            mob.setEquipmentDropChance(slot, Declarar.allowArmorDrop?chance: mob.getRandom().nextInt(18)+5);
+                            mob.setEquipmentDropChance(slot, Declarar.allowArmorDrop ? chance : mob.getRandom().nextInt(18) + 5);
                         }
                     }
                 }
