@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "difficultyplus",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "Difficulty Plus",
   "description": "Enemies spawn with enchantments as you gain xp",
   "authors": [
@@ -37,7 +37,7 @@
   "depends": {
     "fabricloader": ">=0.12.11",
     "fabric": "*",
-    "minecraft": "1.18.1"
+    "minecraft": "1.18.2"
   },
   "custom": {
     "cardinal-components": [
