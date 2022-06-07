@@ -1,89 +1,85 @@
 package website.skylorbeck.minecraft.difficultyplus;
 
-import me.shedaniel.autoconfig.ConfigData;
-import me.shedaniel.autoconfig.annotation.Config;
-import me.shedaniel.autoconfig.annotation.ConfigEntry;
-import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
+import website.skylorbeck.minecraft.skylorlib.MidnightConfig;
 
 
-@Config(name = "difficultyplus")
-public class ModConfig implements ConfigData {
+public class ModConfig extends MidnightConfig {
+    @Entry
+    public static int playerInfluence = 100; // 100 = 1 x player
+    @Entry
+    public static int xpRatio = 1000;//1000 == 0.01 == 1%
 
-    @Comment("150 = 1.5x Player multiplier")
-    public int playerInfluence = 100; // 100 = 1 x player
+    @Entry(min = 0, max = 100)
+    public static int chanceCap = 100; //1==1%
 
-    @Comment("This amount = 1% chance")
-    public int xpRatio = 1000;//1000 == 0.01 == 1%
+    @Entry
+    public static boolean allowNonArmorWearing = false;
 
-    @Comment("20 = 20% max chance")
-    @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
-    public int chanceCap = 100; //1==1%
+    @Entry
+    public static
+    boolean allowDrops = true;
 
-    @Comment("Creepers, Spiders, Endermen, etc")
-    public boolean allowNonArmorWearing = false;
+    @Entry
+    public static boolean leather = true;
 
-    @Comment("Can be overpowered at high difficulty")
-    public boolean allowDrops = true;
+    @Entry
+    public static boolean chain = true;
+    @Entry
+    public static boolean wood = true;
+    @Entry
+    public static boolean stone = false;
+    @Entry
+    public static boolean iron = true;
+    @Entry
+    public static boolean gold = false;
+    @Entry
+    public static boolean diamond = true;
+    @Entry
+    public static boolean netherite = false;
 
-    @Comment("Determines what Status Effects can be used")
-    @ConfigEntry.Gui.CollapsibleObject
-    public StatusEffects statusEffects = new StatusEffects();
+    @Entry
+    public static boolean sword = true;
+    @Entry
+    public static boolean pickaxe = false;
+    @Entry
+    public static boolean axe = true;
+    @Entry
+    public static boolean shovel = true;
+    @Entry
+    public static boolean hoe = false;
 
-    @Comment("Determines what Armor Materials can be used")
-    @ConfigEntry.Gui.CollapsibleObject
-    public ArmorTiers armorTiers = new ArmorTiers();
 
-    @Comment("Determines what Tool Materials can be used")
-    @ConfigEntry.Gui.CollapsibleObject
-    public Tiers tiers = new Tiers();
 
-    @ConfigEntry.Gui.CollapsibleObject
-    @Comment("Determines what Tools can be used")
-    public Tools tools = new Tools();
-
-    static class Tiers {
-        boolean wood = true;
-        boolean stone = false;
-        boolean iron = true;
-        boolean gold = false;
-        boolean diamond = true;
-        boolean netherite = false;
-    }
-
-    static class Tools {
-        boolean sword = true;
-        boolean pickaxe = false;
-        boolean axe = true;
-        boolean shovel = true;
-        boolean hoe = false;
-    }
-
-    static class ArmorTiers {
-        boolean leather = true;
-        boolean chain = true;
-        boolean iron = true;
-        boolean gold = false;
-        boolean diamond = true;
-        boolean netherite = false;
-    }
-
-    static class StatusEffects {
-        boolean regeneration = true;
-        boolean speed = true;
-        boolean fireResistance = true;
-        boolean strength = true;
-        boolean invisibility = true;
-        boolean weakness = true;
-        boolean slowness = true;
-        boolean haste = false;
-        boolean miningFatigue = false;
-        boolean jumpBoost = false;
-        boolean resistance = false;
-        boolean waterBreathing = false;
-        boolean nightVision = false;
-        boolean hunger = false;
-        boolean absorption = false;
-        boolean glowing = false;
-    }
+    @Entry
+    public static boolean regeneration = true;
+    @Entry
+    public static boolean speed = true;
+    @Entry
+    public static boolean fireResistance = true;
+    @Entry
+    public static boolean strength = true;
+    @Entry
+    public static boolean invisibility = true;
+    @Entry
+    public static boolean weakness = true;
+    @Entry
+    public static boolean slowness = true;
+    @Entry
+    public static boolean haste = false;
+    @Entry
+    public static boolean miningFatigue = false;
+    @Entry
+    public static boolean jumpBoost = false;
+    @Entry
+    public static boolean resistance = false;
+    @Entry
+    public static boolean waterBreathing = false;
+    @Entry
+    public static boolean nightVision = false;
+    @Entry
+    public static boolean hunger = false;
+    @Entry
+    public static boolean absorption = false;
+    @Entry
+    public static boolean glowing = false;
 }
-

@@ -1,25 +1,20 @@
 package website.skylorbeck.minecraft.difficultyplus;
 
-import me.shedaniel.autoconfig.AutoConfig;
-import me.shedaniel.autoconfig.ConfigHolder;
-import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
+import com.mojang.brigadier.CommandDispatcher;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
-import net.minecraft.util.ActionResult;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.minecraft.command.CommandRegistryAccess;
+import net.minecraft.server.command.CommandManager;
+import net.minecraft.server.command.ServerCommandSource;
+import website.skylorbeck.minecraft.skylorlib.MidnightConfig;
 
 public class Difficultyplus implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        ConfigHolder<ModConfig> configHolder = AutoConfig.register(ModConfig.class, JanksonConfigSerializer::new);//register config asap to prevent errors down the line
-        configHolder.getConfig();
+        MidnightConfig.init(Declarar.MODID,ModConfig.class);//register config asap to prevent errors down the line
         Declarar.UpdateXPRates();
-        configHolder.registerSaveListener((manager, data) ->{//listen for config file changes
-            Declarar.UpdateXPRates();
-            //gets settings that don't need a full restart to properly do.
-            return ActionResult.SUCCESS;
-        });
-        CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment)-> {
             CommandCenter.register(dispatcher);
         });
     }

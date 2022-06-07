@@ -10,7 +10,7 @@ import website.skylorbeck.minecraft.difficultyplus.cardinal.DifficultyPlusCardin
 @Mixin(PlayerEntity.class)
 public class PlayerEntityMixin {
     @Inject(method = "getXpToDrop", at = @At("RETURN"))
-    public void levelWorldDown(PlayerEntity player, CallbackInfoReturnable<Integer> cir){
+    public void levelWorldDown(CallbackInfoReturnable<Integer> cir){
         if (cir.getReturnValue()>0) {
             DifficultyPlusCardinal.WorldXP.get(((PlayerEntity)(Object)this).world).addTotalXP(-cir.getReturnValue());
         }

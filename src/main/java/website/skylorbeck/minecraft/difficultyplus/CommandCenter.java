@@ -4,7 +4,6 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import website.skylorbeck.minecraft.difficultyplus.cardinal.DifficultyPlusCardinal;
@@ -19,7 +18,7 @@ public class CommandCenter {
                         .then(literal("clear")
                                 .executes((command) -> {
                                     resetWorldXP(command.getSource().getWorld(),0);
-                                    command.getSource().sendFeedback(new TranslatableText("command.difficultyplus.cleared"), true);
+                                    command.getSource().sendFeedback(Text.translatable("command.difficultyplus.cleared"), true);
                                     return 1;
                                 }))
         );
@@ -30,7 +29,7 @@ public class CommandCenter {
                                 .executes((command) -> {
                                     int value =(int)  ((IntegerArgumentType.getInteger(command,"percent") * 0.01f)/ Declarar.xpInfluence);
                                     resetWorldXP(command.getSource().getWorld(),value);
-                                    command.getSource().sendFeedback(new TranslatableText("command.difficultyplus.set").append(Text.of(" "+ value)), true);
+                                    command.getSource().sendFeedback(Text.translatable("command.difficultyplus.set").append(Text.of(" "+ value)), true);
                                     return 1;
                                 }))
         ));
@@ -39,7 +38,7 @@ public class CommandCenter {
                         .then(literal("get")
                                 .executes((command) -> {
                                     World world = command.getSource().getWorld();
-                                    command.getSource().sendFeedback(new TranslatableText("command.difficultyplus.get").append(Text.of(" "+100* MathHelper.clamp((DifficultyPlusCardinal.WorldXP.get(world).getTotalXP() * Declarar.xpInfluence) * (world.getPlayers().size() * Declarar.playerInfluence), 0, Declarar.chanceCap)+"%")), true);
+                                    command.getSource().sendFeedback(Text.translatable("command.difficultyplus.get").append(Text.of(" "+100* MathHelper.clamp((DifficultyPlusCardinal.WorldXP.get(world).getTotalXP() * Declarar.xpInfluence) * (world.getPlayers().size() * Declarar.playerInfluence), 0, Declarar.chanceCap)+"%")), true);
                                     return 1;
                                 }))
         );
